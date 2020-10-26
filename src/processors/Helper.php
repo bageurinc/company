@@ -4,8 +4,9 @@ namespace Bageur\Company\Processors;
 class Helper {
 
     public static function go($data,$loc) {
-       $namaBerkas = date('YmdHis').'.'.$data->getClientOriginalExtension();
-       $path = $data->storeAs('public/'.$loc.'/', $namaBerkas);
+       $namaBerkas = rand(000,999).'-'.$data->getClientOriginalName();
+      \Storage::makeDirectory('public/bageur.id');
+       $path = $data->storeAs('public/bageur.id/'.$loc.'/', $namaBerkas);
        return basename($path);
     }
 
@@ -16,6 +17,6 @@ class Helper {
             }
             return null;
         }
-        return url('storage/company/'.$image);
+        return url('storage/bageur.id/company/'.$image);
     }
 }

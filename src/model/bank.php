@@ -5,18 +5,14 @@ namespace Bageur\Company\Model;
 use Illuminate\Database\Eloquent\Model;
 use Bageur\Company\Processors\Helper;
 
-class company extends Model
+class bank extends Model
 {
-    protected $table = 'bgr_company';
-    protected $appends = ['avatar','etc_data'];
+    protected $table = 'bgr_bank';
+    protected $appends = ['avatar'];
 
     public function getAvatarAttribute()
     {
-            return Helper::get($this->nama_perusahaan,$this->logo);
-    }  
-    public function getEtcDataAttribute()
-    {
-            return json_decode($this->etc);
+            return Helper::get($this->nama_bank,$this->img);
     }   
     public function scopeDatatable($query,$request,$page=12)
     {
