@@ -17,9 +17,13 @@ class Company extends Migration
             $table->id();
             $table->string('nama_perusahaan');
             $table->string('logo')->nullable();
+            $table->string('logo_path')->nullable();
+            $table->string('favicon')->nullable();
+            $table->string('favicon_path')->nullable();
             $table->string('email')->nullable();
             $table->string('nohp')->nullable();
             $table->string('wa')->nullable();
+            $table->string('yt')->nullable();
             $table->string('fb')->nullable();
             $table->string('in')->nullable();
             $table->string('ig')->nullable();

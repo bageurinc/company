@@ -8,11 +8,15 @@ use Bageur\Company\Processors\Helper;
 class company extends Model
 {
     protected $table = 'bgr_company';
-    protected $appends = ['avatar','etc_data'];
+    protected $appends = ['avatar','avatarfav','etc_data'];
 
     public function getAvatarAttribute()
     {
-            return Helper::get($this->nama_perusahaan,$this->logo);
+            return Helper::get($this->nama_perusahaan,$this->logo,$this->logo_path);
+    }  
+    public function getAvatarfavAttribute()
+    {
+            return Helper::get($this->nama_perusahaan,$this->favicon,$this->favicon_path);
     }  
     public function getEtcDataAttribute()
     {

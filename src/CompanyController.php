@@ -40,8 +40,16 @@ class CompanyController extends Controller
     public function update(Request $request, $id)
     {
         $rules    	= [
-                        'nama_perusahaan'		=> 'required',
-                        'gambar'		     	=> 'mimes:jpg,jpeg,png|max:1000',
+                        'nama_perusahaan'	=> 'required',
+                        'file'		     	=> 'nullable|base64image|base64max:1000',
+                        'email'             => 'nullable|email',
+                        'nohp'              => 'nullable',
+                        'wa'                => 'nullable|numeric',
+                        'fb'                => 'nullable|url',
+                        'ig'                => 'nullable|url',
+                        'tw'                => 'nullable|url',
+                        'yt'                => 'nullable|url',
+
                     ];
                     
         $messages 	= [];
@@ -52,20 +60,28 @@ class CompanyController extends Controller
             $errors = $validator->errors();
             return response(['status' => false ,'error'    =>  $errors->all()], 200);
         }else{
-            $artikel              			= company::findOrFail($id);
-            $artikel->nama_perusahaan	    = $request->nama_perusahaan;
-            $artikel->email                 = $request->email == 'null' ? '' : $request->email;
-            $artikel->nohp                  = $request->nohp == 'null' ? '' : $request->nohp;
-            $artikel->wa                    = $request->wa == 'null' ? '' : $request->wa;
-            $artikel->fb                    = $request->fb == 'null' ? '' : $request->fb;
-            $artikel->in                    = $request->in == 'null' ? '' : $request->in;
-            $artikel->ig                    = $request->ig == 'null' ? '' : $request->ig;
-            $artikel->tw                    = $request->tw == 'null' ? '' : $request->tw;
-            if($request->file('gambar') != null){
-                $upload                     = Helper::go($request->file('gambar'),'company');
-	           	$artikel->logo	        = $upload;
-       		}
-            $artikel->save();
+            $cp              			= company::findOrFail($id);
+            $cp->nama_perusahaan	    = $request->nama_perusahaan;
+            $cp->alamat                 = $request->alamat;
+            $cp->email                 = $request->email;
+            $cp->nohp                  = $request->nohp;
+            $cp->wa                    = $request->wa;
+            $cp->fb                    = $request->fb;
+            $cp->in                    = $request->in;
+            $cp->ig                    = $request->ig;
+            $cp->yt                    = $request->yt;
+            $cp->tw                    = $request->tw;
+            if($request->file != null){
+                $upload                = Helper::avatarbase64($request->file,'company');
+	           	$cp->logo	           = $upload['up'];
+                $cp->logo_path         = $upload['path'];
+       		}                
+            if($request->file2 != null){
+                $upload                = Helper::avatarbase64($request->file2,'company');
+                $cp->favicon              = $upload['up'];
+                $cp->favicon_path         = $upload['path'];
+            }
+            $cp->save();
             return response(['status' => true ,'text'    => 'has input'], 200); 
         }
     }

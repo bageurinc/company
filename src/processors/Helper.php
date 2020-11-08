@@ -10,13 +10,24 @@ class Helper {
        return basename($path);
     }
 
-     public static function get( $name, $image = null, $folder = "bageur", $type = "initials") {
+    public static function avatarbase64($data,$loc)
+    {
+      $path       = 'bageur.id/'.$loc;
+      \Storage::makeDirectory('public/'.$path);
+      $namaBerkas = 'avatar'.date('ymdhis').'.png';
+      $image = \Image::make($data);
+      $image->save(storage_path('app/public/'.$path.'/'.$namaBerkas));
+      $arr = ['up' => $namaBerkas , 'path' => $path];
+      return $arr;
+    }
+
+     public static function get( $name, $image = null, $folder = "bageur.id/company", $type = "initials") {
         if (empty($image)) {
             if (!empty($name)) {
                 return 'https://avatars.dicebear.com/v2/'.$type.'/' . preg_replace('/[^a-z0-9 _.-]+/i', '', $name) . '.svg';
             }
             return null;
         }
-        return url('storage/bageur.id/company/'.$image);
+        return url('storage/'.$folder.'/'.$image);
     }
 }
