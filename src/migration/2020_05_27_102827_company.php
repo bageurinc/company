@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Bageur\Company\model\company;
 
 class Company extends Migration
 {
@@ -45,7 +46,16 @@ class Company extends Migration
             $table->timestamps();
         }); 
 
-        
+            $cp                        = new company;
+            $cp->nama_perusahaan       = 'PT. BAGEUR SOLUSI INDONESIA';
+            $cp->alamat                = 'Jl. Sirsak II, Kedung Waringin, Kec. Bojong Gede, Bogor, Jawa Barat 16710, BLOK CG No.3, Kedung Waringin, Kec. Bojong Gede, Bogor, Jawa Barat 16923';
+            $cp->email                 = 'info@bageur.id';
+            $cp->nohp                  = '0898-8551-395';
+            $cp->wa                    = '0898-8551-395';
+            $cp->fb                    = 'https://www.facebook.com/bageur.inc';
+            $cp->ig                    = 'https://www.instagram.com/bageur.official/';
+            $cp->save();
+
     }
 
     /**

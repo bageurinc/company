@@ -60,9 +60,9 @@ class CompanyController extends Controller
             $errors = $validator->errors();
             return response(['status' => false ,'error'    =>  $errors->all()], 200);
         }else{
-            $cp              			= company::findOrFail($id);
-            $cp->nama_perusahaan	    = $request->nama_perusahaan;
-            $cp->alamat                 = $request->alamat;
+            $cp              		   = company::findOrFail($id);
+            $cp->nama_perusahaan	   = $request->nama_perusahaan;
+            $cp->alamat                = $request->alamat;
             $cp->email                 = $request->email;
             $cp->nohp                  = $request->nohp;
             $cp->wa                    = $request->wa;
