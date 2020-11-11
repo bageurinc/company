@@ -15,6 +15,7 @@ class CompanyServiceProvider extends ServiceProvider
     {
         // include __DIR__.'/routes/web.php';
         $this->app->make('Bageur\Company\CompanyController');
+        $this->app->make('Bageur\Company\BankController');
     }
 
     /**

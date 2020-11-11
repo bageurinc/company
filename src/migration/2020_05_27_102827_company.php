@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Bageur\Company\model\company;
+use Bageur\Company\model\company as cp;
 
 class Company extends Migration
 {
@@ -21,6 +21,7 @@ class Company extends Migration
             $table->string('logo_path')->nullable();
             $table->string('favicon')->nullable();
             $table->string('favicon_path')->nullable();
+            $table->text('alamat')->nullable();
             $table->string('email')->nullable();
             $table->string('nohp')->nullable();
             $table->string('wa')->nullable();
@@ -46,7 +47,7 @@ class Company extends Migration
             $table->timestamps();
         }); 
 
-            $cp                        = new company;
+            $cp                        = new cp;
             $cp->nama_perusahaan       = 'PT. BAGEUR SOLUSI INDONESIA';
             $cp->alamat                = 'Jl. Sirsak II, Kedung Waringin, Kec. Bojong Gede, Bogor, Jawa Barat 16710, BLOK CG No.3, Kedung Waringin, Kec. Bojong Gede, Bogor, Jawa Barat 16923';
             $cp->email                 = 'info@bageur.id';

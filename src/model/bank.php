@@ -12,11 +12,11 @@ class bank extends Model
 
     public function getAvatarAttribute()
     {
-            return Helper::get($this->nama_bank,$this->img);
+            return Helper::get($this->nama_bank,$this->img,'bageur.id/bank');
     }   
     public function scopeDatatable($query,$request,$page=12)
     {
-          $search       = ["nama_perusahaan"];
+          $search       = ["judul",'nama_bank','kcp','no'];
           $searchqry    = '';
 
         $searchqry = "(";
