@@ -71,6 +71,12 @@ class CompanyController extends Controller
             $cp->ig                    = $request->ig;
             $cp->yt                    = $request->yt;
             $cp->tw                    = $request->tw;
+            $cp->tentang_kami          = $request->tentang_kami;
+            $cp->syarat_ketentuan      = $request->syarat_ketentuan;
+            $cp->kebijakan_privacy     = $request->kebijakan_privacy;
+            $cp->jam_operasional       = $request->jam_operasional;
+            $cp->web                   = $request->web;
+            $cp->link_map              = $request->link_map;
             if($request->file != null){
                 $upload                = Helper::avatarbase64($request->file,'company');
 	           	$cp->logo	           = $upload['up'];
