@@ -3,7 +3,7 @@
 namespace Bageur\Company\Model;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Bageur;
 class bank extends Model
 {
     protected $table = 'bgr_bank';
@@ -11,7 +11,7 @@ class bank extends Model
 
     public function getAvatarAttribute()
     {
-        $bageur = new \Bageur;
+        $bageur = new \Bageur\Auth\Facades\Bageur;
         return $bageur->avatar($this->nama_bank,$this->img,'bageur.id/bank');
     }   
     public function scopeDatatable($query,$request,$page=12)
@@ -30,7 +30,7 @@ class bank extends Model
         $searchqry .= ")";
         if(@$request->sort_by){
             if(@$request->sort_by != null){
-            	$explode = explode('.', $request->sort_by);
+                $explode = explode('.', $request->sort_by);
                  $query->orderBy($explode[0],$explode[1]);
             }else{
                   $query->orderBy('created_at','desc');
