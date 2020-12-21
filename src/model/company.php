@@ -3,7 +3,6 @@
 namespace Bageur\Company\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use Bageur\Company\Processors\Helper;
 
 class company extends Model
 {
@@ -12,11 +11,13 @@ class company extends Model
 
     public function getAvatarAttribute()
     {
-            return Helper::get($this->nama_perusahaan,$this->logo,$this->logo_path);
+        $bageur = new Bageur;
+        return $bageur->avatar($this->nama_perusahaan,$this->logo,$this->logo_path);
     }  
     public function getAvatarfavAttribute()
     {
-            return Helper::get($this->nama_perusahaan,$this->favicon,$this->favicon_path);
+        $bageur = new Bageur;
+        return $bageur->avatar($this->nama_perusahaan,$this->favicon,$this->favicon_path);
     }  
     public function getEtcDataAttribute()
     {

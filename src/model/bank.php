@@ -3,7 +3,6 @@
 namespace Bageur\Company\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use Bageur\Company\Processors\Helper;
 
 class bank extends Model
 {
