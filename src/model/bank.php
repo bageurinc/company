@@ -11,7 +11,8 @@ class bank extends Model
 
     public function getAvatarAttribute()
     {
-            return Helper::get($this->nama_bank,$this->img,'bageur.id/bank');
+        $bageur = new \Bageur;
+        return $bageur->avatar($this->nama_bank,$this->img,'bageur.id/bank');
     }   
     public function scopeDatatable($query,$request,$page=12)
     {

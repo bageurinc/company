@@ -11,12 +11,12 @@ class company extends Model
 
     public function getAvatarAttribute()
     {
-        $bageur = new Bageur;
+        $bageur = new \Bageur;
         return $bageur->avatar($this->nama_perusahaan,$this->logo,$this->logo_path);
     }  
     public function getAvatarfavAttribute()
     {
-        $bageur = new Bageur;
+        $bageur = new \Bageur;
         return $bageur->avatar($this->nama_perusahaan,$this->favicon,$this->favicon_path);
     }  
     public function getEtcDataAttribute()
