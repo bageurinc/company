@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Bageur\Company\model\company as cp;
+use Bageur\Company\Model\company as cp;
 
 class Company extends Migration
 {

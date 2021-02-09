@@ -4,7 +4,7 @@ namespace Bageur\Company;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Bageur\Company\model\company;
+use Bageur\Company\Model\company;
 use Bageur\Company\Processors\Helper;
 use Validator;
 class CompanyController extends Controller
