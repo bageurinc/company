@@ -77,6 +77,7 @@ class CompanyController extends Controller
             $cp->jam_operasional       = $request->jam_operasional;
             $cp->web                   = $request->web;
             $cp->link_map              = $request->link_map;
+            $cp->legal                 = $request->legal;
             if($request->file != null){
                 $upload                = Helper::avatarbase64($request->file,'company');
 	           	$cp->logo	           = $upload['up'];
