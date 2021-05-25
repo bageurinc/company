@@ -16,7 +16,7 @@ class CompanyController extends Controller
 
     public function store(Request $request)
     {
-        
+
     }
 
     /**
@@ -51,7 +51,7 @@ class CompanyController extends Controller
                         'yt'                => 'nullable|url',
 
                     ];
-                    
+
         $messages 	= [];
         $attributes = [];
 
@@ -71,9 +71,9 @@ class CompanyController extends Controller
             $cp->ig                    = $request->ig;
             $cp->yt                    = $request->yt;
             $cp->tw                    = $request->tw;
-            $cp->tentang_kami          = $request->tentang_kami;
-            $cp->syarat_ketentuan      = $request->syarat_ketentuan;
-            $cp->kebijakan_privacy     = $request->kebijakan_privacy;
+            $cp->tentang_kami          = \Bageur::textarea($request->tentang_kami);
+            $cp->syarat_ketentuan      = \Bageur::textarea($request->syarat_ketentuan);
+            $cp->kebijakan_privacy     = \Bageur::textarea($request->kebijakan_privacy);
             $cp->jam_operasional       = $request->jam_operasional;
             $cp->web                   = $request->web;
             $cp->link_map              = $request->link_map;
@@ -82,14 +82,14 @@ class CompanyController extends Controller
                 $upload                = Helper::avatarbase64($request->file,'company');
 	           	$cp->logo	           = $upload['up'];
                 $cp->logo_path         = $upload['path'];
-       		}                
+       		}
             if($request->file2 != null){
                 $upload                = Helper::avatarbase64($request->file2,'company');
                 $cp->favicon              = $upload['up'];
                 $cp->favicon_path         = $upload['path'];
             }
             $cp->save();
-            return response(['status' => true ,'text'    => 'has input'], 200); 
+            return response(['status' => true ,'text'    => 'has input'], 200);
         }
     }
 
