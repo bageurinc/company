@@ -12,13 +12,16 @@ class Helper {
 
     public static function avatarbase64($data,$loc)
     {
-      $path       = 'bageur.id/'.$loc;
-      \Storage::makeDirectory('public/'.$path);
-      $namaBerkas = 'avatar'.date('ymdhis').'.png';
-      $image = \Image::make($data);
-      $image->save(storage_path('app/public/'.$path.'/'.$namaBerkas));
-      $arr = ['up' => $namaBerkas , 'path' => $path];
-      return $arr;
+        $file        = explode(";base64,", $data);
+        $path       = 'bageur.id/'.$loc;
+        \Storage::makeDirectory($path);
+        $namaBerkas = 'avatar'.date('ymdhis').'.png';
+        $file_base64 = base64_decode($file[1]);
+        // $image = \Image::make($data);
+        // $image->save(storage_path('app/public/'.$path.'/'.$namaBerkas));
+        \Storage::put($path.'/'.$namaBerkas, $file_base64);
+        $arr = ['up' => $namaBerkas , 'path' => $path];
+        return $arr;
     }
 
      public static function get( $name, $image = null, $folder = "bageur.id/company", $type = "initials") {
