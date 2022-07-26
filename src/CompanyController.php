@@ -89,6 +89,12 @@ class CompanyController extends Controller
                 $cp->favicon_path         = $upload['path'];
             }
             $cp->save();
+            try {
+                $response = Http::get('https://api.miccapro.com/api/company/syncnow');
+            } catch (\Throwable $th) {
+                // dd($th);
+                //throw $th;
+            }
             return response(['status' => true ,'text'    => 'has input'], 200);
         }
     }
