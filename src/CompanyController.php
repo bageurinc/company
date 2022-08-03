@@ -91,7 +91,7 @@ class CompanyController extends Controller
             }
             $cp->save();
             try {
-                $response = Http::get('https://api.miccapro.com/api/company/syncnow');
+                $response = Http::post('https://api.miccapro.com/api/company/syncnow');
             } catch (\Throwable $th) {
                 // dd($th);
                 //throw $th;
