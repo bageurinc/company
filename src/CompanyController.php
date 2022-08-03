@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Bageur\Company\Model\company;
 use Bageur\Company\Processors\Helper;
+use Illuminate\Support\Facades\Http;
 use Validator;
 class CompanyController extends Controller
 {
