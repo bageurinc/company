@@ -13,6 +13,11 @@ class BankController extends Controller
     public function index(Request $request)
     {
         return bank::datatable($request);
+    }    
+    
+    public function resultByType(Request $request)
+    {
+        return bank::where("type",$request->type)->all();
     }
 
     public function store(Request $request)
@@ -23,7 +28,7 @@ class BankController extends Controller
             'kcp'       => 'required',
             'an'        => 'required',
             'no'        => 'required',
-            'file'      => 'nullable|base64image|base64max:1000',
+            // 'file'      => 'nullable|base64image|base64max:1000',
         ];
 
         $messages = [
@@ -37,14 +42,13 @@ class BankController extends Controller
             return response(['status' => false ,'error'    =>  $errors->all()], 200);
         }else{
             $tambah             = new bank;
+            $tambah->type       = $request->type;
             $tambah->judul      = $request->judul;
             $tambah->nama_bank  = $request->nama_bank;
             $tambah->kcp        = $request->kcp;
             $tambah->an         = $request->an;
             $tambah->no         = $request->no;
-            if(!empty($request->file)){
-                $tambah->img        = Helper::avatarbase64($request->file,'bank')['up'];
-            }
+            // $tambah->img        = $request->img;
             $tambah->save();
             return response(['status' => true ,'text'    => 'has input'], 200); 
         }
@@ -76,7 +80,7 @@ class BankController extends Controller
             'kcp'       => 'required',
             'an'        => 'required',
             'no'        => 'required',
-            'file'      => 'nullable|base64image|base64max:1000',
+            // 'file'      => 'nullable|base64image|base64max:1000',
         ];
 
         $messages = [
@@ -90,14 +94,12 @@ class BankController extends Controller
             return response(['status' => false ,'error'    =>  $errors->all()], 200);
         }else{
             $tambah             = bank::find($id);
+            $tambah->type       = $request->type;
             $tambah->judul      = $request->judul;
             $tambah->nama_bank  = $request->nama_bank;
             $tambah->kcp        = $request->kcp;
             $tambah->an         = $request->an;
             $tambah->no         = $request->no;
-            if(!empty($request->file)){
-                $tambah->img        = Helper::avatarbase64($request->file,'bank')['up'];
-            }
             $tambah->save();
             return response(['status' => true ,'text'    => 'has input'], 200); 
         }
