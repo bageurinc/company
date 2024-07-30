@@ -17,7 +17,7 @@ class BankController extends Controller
     
     public function resultByType(Request $request)
     {
-        return bank::where("type",$request->type)->all();
+        return bank::where("type",$request->type)->get();
     }
 
     public function store(Request $request)
